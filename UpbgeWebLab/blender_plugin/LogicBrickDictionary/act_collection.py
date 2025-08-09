@@ -7,7 +7,7 @@ actuator = {
     "parameters": {
         "collection": {
             "type": "str",
-            "description": "Nom de la collection ciblée"
+            "description": "Nom de la collection ciblée",
         },
         "mode": {
             "type": "str",
@@ -17,12 +17,19 @@ actuator = {
                 "RESUME_COLLECTION",         # Reprend la collection suspendue
                 "ADD_OVERLAY_COLLECTION",    # Superpose la collection
                 "REMOVE_OVERLAY_COLLECTION"  # Retire la superposition
-            ]
+            ],
         },
         "overlay_camera": {
             "type": "str",
-            "description": "Nom de la caméra à utiliser pour la superposition (uniquement pour ADD_OVERLAY_COLLECTION)"
+            "description": "Nom de la caméra à utiliser pour la superposition (uniquement pour ADD_OVERLAY_COLLECTION)",
         },
         "use_logic": {
             "type": "bool",
-            "description": "Active le traitement logique
+            "default": False,
+            "description": "Active le traitement logique pour la collection",
+        },
+    },
+    "inputs": [
+        "trigger"
+    ]
+}
