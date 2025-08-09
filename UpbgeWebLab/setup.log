@@ -1,0 +1,51 @@
+2025-08-07 16:01:59 | Démarrage du setup pour 'UpbgeWebLab'
+1) Création de l’arborescence...
+✅ Arborescence OK
+2) Création des fichiers racine...
+✅ Fichiers racine OK
+3) Configuration du virtualenv Python...
+Requirement already satisfied: pip in /home/bendazzarius/Documents/UpbgeWebLab/blender_plugin/venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Using cached pip-25.2-py3-none-any.whl.metadata (4.7 kB)
+Collecting Pillow
+  Using cached pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+Using cached pip-25.2-py3-none-any.whl (1.8 MB)
+Using cached pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+Installing collected packages: pip, Pillow
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed Pillow-11.3.0 pip-25.2
+✅ Virtualenv Python OK
+4) Initialisation de node_builder + installation des dépendances JS…
+Wrote to /home/bendazzarius/Documents/UpbgeWebLab/node_builder/package.json:
+
+{
+  "name": "node_builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+
+→ Installation de three
+dat.gui
+gamepad.js
+stats.js
+gl-matrix…
+
+added 7 packages, and audited 8 packages in 438ms
+
+found 0 vulnerabilities
+✅ node_builder prêt avec modules JS
+5) Initialisation Git...
+Dépôt Git vide initialisé dans /home/bendazzarius/Documents/UpbgeWebLab/.git/
+✅ Git OK
+🎉 Setup terminé. Tout est dans /home/bendazzarius/Documents/UpbgeWebLab
