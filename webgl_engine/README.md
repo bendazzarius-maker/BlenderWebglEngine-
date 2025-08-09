@@ -2,13 +2,17 @@
 
 This folder contains a minimal HTML5/JS/CSS scaffold for a WebGL game engine.
 No binary dependencies are committed. Dependencies are resolved via an import map
-to `../node_builder/node_modules/`.
+to `../node_builder/node_modules/`. Alternatively, you may copy the required
+modules into a local `libs/` folder and adjust import paths if the node-based
+workflow is not available.
 
 ## TODO: Fetch Dependencies
 - **three** — core 3D engine
 - **OrbitControls** — Blender-like viewport navigation
 - **GLTFLoader** — load glTF/GLB assets
 - **stats.js** — FPS and performance monitor
+- **dat.GUI** — quick parameter tuning panel
+- **Gamepad API polyfill** — broad controller support
 - **howler** (optional) — audio playback
 - *(optional)* `TransformControls.js` — gizmos for move/rotate/scale
 - *(optional)* physics (cannon-es / ammo.js)

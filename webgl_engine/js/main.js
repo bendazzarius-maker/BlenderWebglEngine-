@@ -10,7 +10,8 @@ import { initAudio, registerAudioBuffer } from './audio.js';
 // Block 2: state
 export const engine = {
   scene: null, camera: null, renderer: null, controls: null, stats: null,
-  grid: null, axes: null, playing: false, clock: new THREE.Clock(), mixers: []
+  grid: null, axes: null, playing: false, clock: new THREE.Clock(), mixers: [],
+  cube: null, particles: null
 };
 
 // Block 3+: init & runtime
@@ -40,6 +41,24 @@ function init() {
   const dir = new THREE.DirectionalLight(0xffffff, 0.8);
   dir.position.set(5, 10, 7.5); engine.scene.add(dir);
 
+  // Example cube
+  const geo = new THREE.BoxGeometry();
+  const mat = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+  engine.cube = new THREE.Mesh(geo, mat);
+  engine.scene.add(engine.cube);
+
+  // Simple particle system
+  const pGeo = new THREE.BufferGeometry();
+  const count = 1000;
+  const positions = new Float32Array(count * 3);
+  for (let i = 0; i < count * 3; i++) {
+    positions[i] = (Math.random() - 0.5) * 10;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const pMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.05 });
+  engine.particles = new THREE.Points(pGeo, pMat);
+  engine.scene.add(engine.particles);
+
   engine.stats = new Stats(); document.body.appendChild(engine.stats.dom);
 
   initOutliner(engine.scene);
@@ -63,6 +82,10 @@ function animate() {
   if (engine.playing) {
     const dt = engine.clock.getDelta();
     for (const m of engine.mixers) m.update(dt);
+    if (engine.cube) {
+      engine.cube.rotation.x += 0.01;
+      engine.cube.rotation.y += 0.01;
+    }
   }
   engine.controls.update(); engine.stats.update();
   engine.renderer.render(engine.scene, engine.camera);
