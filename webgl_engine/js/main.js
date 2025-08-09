@@ -9,67 +9,44 @@ import { initAudio, registerAudioBuffer } from './audio.js';
 
 // Block 2: state
 export const engine = {
-  scene: null,
-  camera: null,
-  renderer: null,
-  controls: null,
-  stats: null,
-  grid: null,
-  axes: null,
-  playing: false,
-  clock: new THREE.Clock(),
-  mixers: [],         // animations
+  scene: null, camera: null, renderer: null, controls: null, stats: null,
+  grid: null, axes: null, playing: false, clock: new THREE.Clock(), mixers: []
 };
 
 // Block 3+: init & runtime
-init();
-animate();
+init(); animate();
 
 function init() {
-  // Scene
   engine.scene = new THREE.Scene();
   engine.scene.background = new THREE.Color(0x222222);
 
-  // Camera
   engine.camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
   engine.camera.position.set(4, 3, 6);
 
-  // Renderer
   engine.renderer = new THREE.WebGLRenderer({ antialias: true });
   const vp = document.getElementById('viewport');
-  resize();
-  vp.appendChild(engine.renderer.domElement);
+  resize(); vp.appendChild(engine.renderer.domElement);
   window.addEventListener('resize', resize);
 
-  // Controls (style proche Blender viewport)
   engine.controls = new OrbitControls(engine.camera, engine.renderer.domElement);
   engine.controls.enableDamping = true;
   engine.controls.screenSpacePanning = true;
 
-  // Helpers
   engine.grid = new THREE.GridHelper(100, 100, 0x666666, 0x333333);
   engine.axes = new THREE.AxesHelper(1.5);
-  engine.scene.add(engine.grid);
-  engine.scene.add(engine.axes);
+  engine.scene.add(engine.grid); engine.scene.add(engine.axes);
 
-  // Lights
   engine.scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1));
   const dir = new THREE.DirectionalLight(0xffffff, 0.8);
-  dir.position.set(5, 10, 7.5);
-  engine.scene.add(dir);
+  dir.position.set(5, 10, 7.5); engine.scene.add(dir);
 
-  // Stats
-  engine.stats = new Stats();
-  document.body.appendChild(engine.stats.dom);
+  engine.stats = new Stats(); document.body.appendChild(engine.stats.dom);
 
-  // Subsystems
   initOutliner(engine.scene);
   initGamepad();
   initAudio();
 
-  // Menus & actions
   wireUI();
-  // Enable drag-n-drop for models
   enableDragDrop();
 }
 
@@ -77,8 +54,7 @@ function resize() {
   const vp = document.getElementById('viewport');
   const w = vp.clientWidth || (window.innerWidth - 200);
   const h = vp.clientHeight || (window.innerHeight - 30);
-  engine.camera.aspect = w / h;
-  engine.camera.updateProjectionMatrix();
+  engine.camera.aspect = w / h; engine.camera.updateProjectionMatrix();
   engine.renderer.setSize(w, h);
 }
 
@@ -86,19 +62,14 @@ function animate() {
   requestAnimationFrame(animate);
   if (engine.playing) {
     const dt = engine.clock.getDelta();
-    // Step animations
     for (const m of engine.mixers) m.update(dt);
   }
-  engine.controls.update();
-  engine.stats.update();
+  engine.controls.update(); engine.stats.update();
   engine.renderer.render(engine.scene, engine.camera);
 }
 
 // === UI wiring ===
 function wireUI() {
-  const show = el => el.classList.add('open');
-  const hide = el => el.classList.remove('open');
-
   const fileBtn = document.getElementById('fileBtn');
   const fileMenu = document.getElementById('fileMenu');
   fileBtn.onclick = () => fileMenu.classList.toggle('open');
@@ -111,12 +82,8 @@ function wireUI() {
   const viewMenu = document.getElementById('viewMenu');
   viewBtn.onclick = () => viewMenu.classList.toggle('open');
 
-  document.getElementById('toggleGrid').onclick = () => {
-    engine.grid.visible = !engine.grid.visible;
-  };
-  document.getElementById('toggleAxes').onclick = () => {
-    engine.axes.visible = !engine.axes.visible;
-  };
+  document.getElementById('toggleGrid').onclick = () => { engine.grid.visible = !engine.grid.visible; };
+  document.getElementById('toggleAxes').onclick = () => { engine.axes.visible = !engine.axes.visible; };
 
   document.getElementById('playBtn').onclick = () => {
     engine.playing = true;
@@ -129,28 +96,23 @@ function wireUI() {
     document.getElementById('stopBtn').disabled = true;
   };
 
-  // File > Import model
   document.getElementById('importModel').onclick = () => {
     document.getElementById('filePickerModel').click();
   };
   document.getElementById('filePickerModel').onchange = async e => {
-    const file = e.target.files[0];
-    if (!file) return;
+    const file = e.target.files[0]; if (!file) return;
     await importModelFile(file);
   };
 
-  // File > Import audio
   document.getElementById('importAudio').onclick = () => {
     document.getElementById('filePickerAudio').click();
   };
   document.getElementById('filePickerAudio').onchange = async e => {
-    const file = e.target.files[0];
-    if (!file) return;
+    const file = e.target.files[0]; if (!file) return;
     const url = URL.createObjectURL(file);
     registerAudioBuffer(url, file.name);
   };
 
-  // Edit stubs
   document.getElementById('openIDE').onclick = () => {
     alert('IDE/Node editor stub — TODO: integrate Monaco + node graph. Will emit JSNode.');
   };
@@ -158,10 +120,9 @@ function wireUI() {
     alert('Rename stub — TODO: hook to current selection from Outliner.');
   };
 
-  // Close menus when clicking outside
   window.addEventListener('click', (ev) => {
     if (!ev.target.closest('.menu')) {
-      for (const d of document.querySelectorAll('.dropdown')) hide(d);
+      for (const d of document.querySelectorAll('.dropdown')) d.classList.remove('open');
     }
   });
 }

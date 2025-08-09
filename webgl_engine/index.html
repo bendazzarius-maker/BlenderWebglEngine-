@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>WebGL Game Engine</title>
-<link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <title>WebGL Game Engine</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<div id="topbar">
-  <div class="menu">
-    <button id="fileBtn">File ▾</button>
-    <div class="dropdown" id="fileMenu">
-      <button id="importModel">Import 3D model (gltf/glb)</button>
-      <button id="importAudio">Import Audio</button>
+  <div id="topbar">
+    <div class="menu">
+      <button id="fileBtn">File ▾</button>
+      <div class="dropdown" id="fileMenu">
+        <button id="importModel">Import 3D model (gltf/glb)</button>
+        <button id="importAudio">Import Audio</button>
+      </div>
     </div>
-  </div>
-  <div class="menu">
-    <button id="editBtn">Edit ▾</button>
-    <div class="dropdown" id="editMenu">
-      <button id="openIDE">Open Script IDE (stub)</button>
-      <button id="renameItem">Rename Selected (stub)</button>
+    <div class="menu">
+      <button id="editBtn">Edit ▾</button>
+      <div class="dropdown" id="editMenu">
+        <button id="openIDE">Open Script IDE (stub)</button>
+        <button id="renameItem">Rename Selected (stub)</button>
+      </div>
     </div>
-  </div>
-  <div class="menu">
-    <button id="viewBtn">View ▾</button>
-    <div class="dropdown" id="viewMenu">
-      <button id="toggleGrid">Toggle Grid</button>
-      <button id="toggleAxes">Toggle Axes</button>
-      <button id="frameSelected">Frame Selected (stub)</button>
+    <div class="menu">
+      <button id="viewBtn">View ▾</button>
+      <div class="dropdown" id="viewMenu">
+        <button id="toggleGrid">Toggle Grid</button>
+        <button id="toggleAxes">Toggle Axes</button>
+        <button id="frameSelected">Frame Selected (stub)</button>
+      </div>
     </div>
+    <button id="playBtn">▶ Play</button>
+    <button id="stopBtn" disabled>⏹ Stop</button>
   </div>
-  <button id="playBtn">▶ Play</button>
-  <button id="stopBtn" disabled>⏹ Stop</button>
-</div>
 
-<div id="sidebar">
-  <h3>Outliner</h3>
-  <ul id="outliner-list"></ul>
-</div>
+  <div id="sidebar">
+    <h3>Outliner</h3>
+    <ul id="outliner-list"></ul>
+  </div>
 
-<div id="viewport"></div>
+  <div id="viewport"></div>
 
-<input id="filePickerModel" type="file" accept=".gltf,.glb" style="display:none" />
-<input id="filePickerAudio" type="file" accept="audio/*" style="display:none" />
+  <input id="filePickerModel" type="file" accept=".gltf,.glb" style="display:none" />
+  <input id="filePickerAudio" type="file" accept="audio/*" style="display:none" />
 
-<script type="module" src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
