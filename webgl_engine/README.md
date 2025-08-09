@@ -1,20 +1,22 @@
 # WebGL Engine Skeleton
 
 This folder contains a minimal HTML5/JS/CSS scaffold for a WebGL game engine.
-No binary dependencies are included. Place required libraries under `libs/`.
+No binary dependencies are committed. Dependencies are resolved via an import map
+to `../node_builder/node_modules/`.
 
 ## TODO: Fetch Dependencies
-- **three.module.js** — core 3D engine
-- **OrbitControls.js** — Blender-like viewport navigation
-- **GLTFLoader.js** — load glTF/GLB assets
-- **stats.module.js** — FPS and performance monitor
-- **howler.core.js** — audio playback
+- **three** — core 3D engine
+- **OrbitControls** — Blender-like viewport navigation
+- **GLTFLoader** — load glTF/GLB assets
+- **stats.js** — FPS and performance monitor
+- **howler** (optional) — audio playback
 - *(optional)* `TransformControls.js` — gizmos for move/rotate/scale
 - *(optional)* physics (cannon-es / ammo.js)
 - *(optional)* particles (Three.js points or external lib)
 - *(optional)* Monaco Editor + node graph (e.g., LiteGraph.js) for in-page IDE/JSNode
 
-Copy the `.js` files into `webgl_engine/libs/` and keep imports in code pointing to `./libs/...`.
+Dependencies should be installed under `../node_builder/node_modules/` and
+referenced via the import map in `index.html`.
 
 ## Local Development
 
@@ -42,7 +44,6 @@ webgl_engine/
     outliner.js
     audio.js
     gamepad.js
-  libs/           # third-party libs (three, loaders, howler, stats)
   assets/
     models/
     textures/

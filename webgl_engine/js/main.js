@@ -1,8 +1,8 @@
 // Block 1: imports
-import * as THREE from '../libs/three.module.js';
-import { OrbitControls } from '../libs/OrbitControls.js';
-import { GLTFLoader } from '../libs/GLTFLoader.js';
-import Stats from '../libs/stats.module.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import Stats from 'stats.js';
 import { initOutliner, refreshOutliner } from './outliner.js';
 import { initGamepad } from './gamepad.js';
 import { initAudio, registerAudioBuffer } from './audio.js';

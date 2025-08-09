@@ -43,6 +43,18 @@
   <input id="filePickerModel" type="file" accept=".gltf,.glb" style="display:none" />
   <input id="filePickerAudio" type="file" accept="audio/*" style="display:none" />
 
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "../node_builder/node_modules/three/build/three.module.js",
+      "three/addons/": "../node_builder/node_modules/three/examples/jsm/",
+      "stats.js": "../node_builder/node_modules/stats.js/build/stats.module.js",
+      "dat.gui": "../node_builder/node_modules/dat.gui/build/dat.gui.module.js",
+      "gl-matrix": "../node_builder/node_modules/gl-matrix/esm/index.js"
+    }
+  }
+  </script>
+
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
